@@ -1,5 +1,6 @@
 import time
 
+import cv2
 import pygame
 from network import Network
 from variables import *
@@ -54,10 +55,8 @@ def main():
             font = pygame.font.SysFont("SF Pro Text", 30)
             text = font.render("Player " + game.get_winner() + " Lose ", True, (255, 255, 255))
             win.blit(text, (215, 300))
-            draw_scores(win, game.get_scores())
-
             pygame.display.update()
-            time.sleep(5)
+            time.sleep(3)
             n.send("reset")
 
         keys = pygame.key.get_pressed()
@@ -114,7 +113,7 @@ def menu_screen():
 pygame.font.init()
 width = 600
 height = 600
-a = pygame.image.load('logo.png')
+a = pygame.image.load('Assets/logo.png')
 win = pygame.display.set_mode((width, height))
 pygame.display.set_icon(a)
 pygame.display.set_caption("Nhom 4 - Ping Pong")
