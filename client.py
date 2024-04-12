@@ -13,11 +13,11 @@ def redrawWindow(win, game):
         pygame.draw.rect(win, YELLOW, (450, 0, 150, 600))
         font = pygame.font.SysFont("SF Pro Display", 130, True)
         font2 = pygame.font.SysFont("SF Pro Text", 30)
-        t1 = font.render("S", True, (255, 255, 255))
+        t1 = font.render("P", True, (255, 255, 255))
         t2 = font.render("O", True, (255, 255, 255))
-        t3 = font.render("C", True, (255, 255, 255))
-        t4 = font.render("K", True, (255, 255, 255))
-        t5 = font2.render("waiting for players", True, (255, 255, 255))
+        t3 = font.render("N", True, (255, 255, 255))
+        t4 = font.render("G", True, (255, 255, 255))
+        t5 = font2.render("Waiting for Players!!", True, (255, 255, 255))
         win.blit(t1, (40, 250))
         win.blit(t2, (190, 250))
         win.blit(t3, (340, 250))
@@ -33,6 +33,7 @@ def redrawWindow(win, game):
         game.puck.draw(win)
         for pl in game.players:
             pl.draw(win)
+
     pygame.display.update()
 
 
@@ -51,11 +52,14 @@ def main():
             break
         if game.get_winner() is not None:
             font = pygame.font.SysFont("SF Pro Text", 30)
-            text = font.render("OMG!!! " + game.get_winner() + " NOOB! NOT ePiCo", True, (255, 255, 255))
-            win.blit(text, (150, 300))
+            text = font.render("Player " + game.get_winner() + " Lose ", True, (255, 255, 255))
+            win.blit(text, (215, 300))
+            draw_scores(win, game.get_scores())
+
             pygame.display.update()
-            time.sleep(3)
+            time.sleep(5)
             n.send("reset")
+
         keys = pygame.key.get_pressed()
         if game.connected():
             moves = []
@@ -77,6 +81,15 @@ def main():
         clock.tick(60)
 
 
+def draw_scores(win, scores):
+    font = pygame.font.SysFont("SF Pro Text", 30)
+    win.fill((37, 37, 37))
+    text = font.render(
+        f"Yellow: {scores['Yellow']}  Green: {scores['Green']}  Blue: {scores['Blue']}  Pink: {scores['Pink']}",
+        True, (255, 255, 255))
+    win.blit(text, (50, 20))
+    pygame.display.update()
+
 def menu_screen():
     waiting = True
     clock = pygame.time.Clock()
@@ -96,13 +109,15 @@ def menu_screen():
     main()
 
 
+
+
 pygame.font.init()
 width = 600
 height = 600
 a = pygame.image.load('logo.png')
 win = pygame.display.set_mode((width, height))
 pygame.display.set_icon(a)
-pygame.display.set_caption("by Gleb Kiva")
+pygame.display.set_caption("Nhom 4 - Ping Pong")
 
 while True:
     menu_screen()

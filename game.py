@@ -38,6 +38,8 @@ class Game:
         self.puck = Puck(300, 300, (221, 221, 221))
         self.winner = None
 
+
+
     def end_game(self, winner):
         self.winner = winner
 
@@ -92,6 +94,7 @@ class Game:
         self.puck.pos[0] += self.puck.vx * self.puck.velocity
         self.puck.pos[1] += self.puck.vy * self.puck.velocity
 
+
     def get_pos(self, p):
         return self.players[p]
 
@@ -99,6 +102,7 @@ class Game:
         return self.ready
 
     def get_winner(self):
+
         return self.winner
 
     def resetWent(self):
