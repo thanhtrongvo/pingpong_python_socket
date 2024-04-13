@@ -1,6 +1,6 @@
 import time
 
-import cv2
+
 import pygame
 from network import Network
 from variables import *
@@ -80,14 +80,14 @@ def main():
         clock.tick(60)
 
 
-def draw_scores(win, scores):
-    font = pygame.font.SysFont("SF Pro Text", 30)
-    win.fill((37, 37, 37))
-    text = font.render(
-        f"Yellow: {scores['Yellow']}  Green: {scores['Green']}  Blue: {scores['Blue']}  Pink: {scores['Pink']}",
-        True, (255, 255, 255))
-    win.blit(text, (50, 20))
-    pygame.display.update()
+# def draw_scores(win, scores):
+#     font = pygame.font.SysFont("SF Pro Text", 30)
+#     win.fill((37, 37, 37))
+#     text = font.render(
+#         f"Yellow: {scores['Yellow']}  Green: {scores['Green']}  Blue: {scores['Blue']}  Pink: {scores['Pink']}",
+#         True, (255, 255, 255))
+#     win.blit(text, (50, 20))
+#     pygame.display.update()
 
 def menu_screen():
     waiting = True
